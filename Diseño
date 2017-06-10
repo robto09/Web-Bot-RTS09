@@ -1,0 +1,27 @@
+#Diseño WEB BOT.
+
+Antes de desarrollar el Web-Bot primero se planificó como iba a estar estructurada la aplicación. 
+
+Por lo tanto va a estar constituida por una clase principal llamada ‘app’ la cual va a ser la encargada de procesar toda la información de las apis que están integradas. En este caso el de las 4 operaciones básicas y otra que consulta la temperatura en grados centígrados de una ciudad.
+
+Cada clase tendrá una funcionalidad única. Por ejemplo hay una clase para cada operación básica matemática los cuales realizan cada una su propia función ya que cuentan con una url del api para que puedan recibir peticiones HTTP del tipo POST empleando para ello el software POSTMAN  o cURL.
+
+Habrá una clase llamada ‘resources’ encargada de tener todos los módulos o librerías que necesitara el Bot para poder correr correctamente-
+
+Habrá una base de datos no relacional, Mongodb. Para almacenar en una colección el log de consultas y operaciones en cada api, y otra colección para almacenar todas las habilidades que aprendió a realizar el Bot, las cuales también podrán ser desaprendidas. 
+
+Va a ver un método llamado ‘mostrarEstados()’ con la siguiente ruta:
+/api/web-bot/mostrar/estados
+Esta va a mostrar el log de operaciones.
+
+Va a ver un método llamado ‘mostrarMemoria()’ con la siguiente ruta 
+/api/web-bot/mostrar/memoria
+Esta mostrará lo que sabe hacer el Bot.
+
+Va a ver un método llamado ‘desaprender()’ con la siguiente ruta
+/api/web-bot/mostrar/desaprender/<userid>/<nombre>',methods=['DELETE'
+El cual va a buscar en la base de datos el nombre de la habilidad y la borrará una. Una vez se reinicie el servidor la habilidad se habrá olvidado.
+
+Por otro lado el método principal será el de uploadFile ubicado en la clase ‘app’ con la siguiente ruta
+/api/web-bot/aprender
+Este se encargará de subir el fichero a memoria junto con sus parámetros a través de un POST. Una vez subido se enviara a la base de datos el nombre de la habilidad, junto con el creador y la fecha. Y hecho esto el conocimiento adquirido estará disponible la próxima vez que se reinicie el servidor
